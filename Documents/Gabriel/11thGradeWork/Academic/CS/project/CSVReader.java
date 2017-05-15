@@ -1,6 +1,5 @@
 import java.util.*;
 import java.io.*;
-
 public class CSVReader {
 	public static void main(String[] args) throws FileNotFoundException {
 		ArrayList<ArrayList<Double>> test = new ArrayList<ArrayList<Double>>();
@@ -27,12 +26,6 @@ public class CSVReader {
 				}
 			}			
 		}
-	   /* System.out.println(toreturn.size());
-		* System.out.println(toreturn.get(0).size());
-		* for (int i=0;i<5;i++) {
-		*	System.out.println(toreturn.get(i).get(toreturn.get(i).size()-2));
-		* }
-		*/
 		return toreturn;
 	}
 }
