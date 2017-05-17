@@ -12,12 +12,24 @@ public class PowerSpectrum {
 		return myPowSpec.get(time);
 	}
 	public double similarity(PowerSpectrum other, int time, String type) { //returns similarity of a certain type at a certain time
-		if (type.equals("cosine")) {
-			ArrayList<Double> first = new ArrayList<Double>();
-			ArrayList<Double> second = new ArrayList<Double>();
-			first = this.getTimeCol(time);
-			second = other.getTimeCol(time);
+		ArrayList<Double> first = new ArrayList<Double>();
+		ArrayList<Double> second = new ArrayList<Double>();
+		first = this.getTimeCol(time);
+		second = other.getTimeCol(time);
+		if (type.equals("cosine")) { // cosine similarity
 			return dotProduct(first, second) / (vectMagnitude(first) * vectMagnitude(second));
+		} else if (type.equals("tanimoto")) { // tanimoto coefficient
+			return dotProduct(first, second) / (vectMagnitude(first) * vectMagnitude(second) - dotProduct(first, second));
+		} else if (type.equals("euclidean")) { //euclidean distance
+			double total = 0;
+			for (int i=0;i<first.size();i++) {
+				total += (first.get(i)-second.get(i))*(first.get(i)-second.get(i));
+			} return Math.sqrt(total)/500;
+		} else if (type.equals("sq euclidean")) { //euclidean distance
+			double total = 0;
+			for (int i=0;i<first.size();i++) {
+				total += (first.get(i)-second.get(i))*(first.get(i)-second.get(i));
+			} return total/500;
 		}
 		return 0;
 	}
