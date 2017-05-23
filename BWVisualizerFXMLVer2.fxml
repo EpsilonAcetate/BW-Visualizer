@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane fx:id="paneContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox fx:id="testPicker" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -28,12 +27,12 @@
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" layoutX="10.0" layoutY="37.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Test 2">
+            <Button fx:id="test2Button" alignment="CENTER" layoutX="10.0" layoutY="37.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Test 2">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Test 3">
+            <Button fx:id="test3Button" alignment="CENTER" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Test 3">
                <opaqueInsets>
                   <Insets bottom="30.0" left="4.0" right="4.0" top="30.0" />
                </opaqueInsets>
@@ -59,12 +58,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="file1textfield" GridPane.columnIndex="1" />
+            <TextField fx:id="file1TextField" GridPane.columnIndex="1" />
             <Button fx:id="file1Button" alignment="CENTER" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="2" />
             <Button fx:id="file2Button" alignment="CENTER" layoutX="462.0" layoutY="12.0" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter File 1" textAlignment="CENTER" wrappingWidth="144.21875" />
             <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter File 2" textAlignment="CENTER" wrappingWidth="144.21875" GridPane.rowIndex="1" />
-            <TextField fx:id="file2textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="file2TextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </bottom>
@@ -76,6 +75,6 @@
       </AnchorPane>
    </top>
    <center>
-      <Pane fx:id="graphPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="graphingPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
