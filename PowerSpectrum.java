@@ -29,7 +29,7 @@ public class PowerSpectrum {
 			double total = 0;
 			for (int i=0;i<first.size();i++) {
 				total += (first.get(i)-second.get(i))*(first.get(i)-second.get(i));
-			} return total/500;
+			} return total;
 		}
 		return 0;
 	}
