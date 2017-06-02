@@ -14,15 +14,17 @@ public class BrainwaveClient extends Application{
             primaryStage.show();
         }
 	public static void main(String[] args) {
-                //launch(args);
+                launch(args);
 		CSVReader c = new CSVReader();
 		try {
 			PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/s21.powerspec.csv"));
 			PowerSpectrum q = new PowerSpectrum(c.readFile("powerspec/s22.powerspec.csv"));
-			AnimTest a = new AnimTest();
-			Stage s = new Stage();
-			a.animatePSpec(p, s);
-		} catch (FileNotFoundException e) {
+			TmpAnimTest a = new TmpAnimTest();
+		//	a.startAnimation();
+		//	AnimTest a = new AnimTest();
+		//	Stage s = new Stage();
+		//	a.animatePSpec(p, s);
+		} catch (Exception e) {
 			//do nothing
 		}
 	}
