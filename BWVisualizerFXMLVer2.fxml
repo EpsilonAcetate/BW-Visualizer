@@ -20,22 +20,22 @@
    <left>
       <VBox fx:id="testPicker" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="noTestButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleDisplayButton" prefHeight="0.0" prefWidth="95.0" text="Display">
+            <Button fx:id="noTestButton" alignment="CENTER" mnemonicParsing="false" prefHeight="0.0" prefWidth="95.0" text="Display">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="simButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSimilarityTestButton" prefHeight="27.0" prefWidth="102.0" text="Similarity Test">
+            <Button fx:id="simButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Similarity Test">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="test2Button" alignment="CENTER" layoutX="10.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleTest2ButtonAction" prefHeight="27.0" prefWidth="102.0" text="Test 2">
+            <Button fx:id="test2Button" alignment="CENTER" layoutX="10.0" layoutY="37.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="102.0" text="Test 2">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="test3Button" alignment="CENTER" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleTest3ButtonAction" prefHeight="27.0" prefWidth="102.0" text="Test 3">
+            <Button fx:id="test3Button" alignment="CENTER" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Test 3">
                <opaqueInsets>
                   <Insets bottom="30.0" left="4.0" right="4.0" top="30.0" />
                </opaqueInsets>
