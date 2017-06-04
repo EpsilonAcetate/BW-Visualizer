@@ -47,11 +47,13 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML
     private void handleTextField1ConfirmButton(ActionEvent event){
         input1 = file1TextField.getText();
+        System.out.println("testing confirm 1 button");
     }
 
     @FXML
     private void handleTextField2ConfirmButton(ActionEvent event) {
         input2 = file2TextField.getText();
+        System.out.println("testing confirm 2 button");
     }
     @FXML
     private void handleDisplayButton(ActionEvent event) {
