@@ -33,6 +33,8 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private Button simButton;
     @FXML private Button test2Button;
     @FXML private Button test3Button;
+    @FXML private Button file1Button;
+    @FXML private Button file2Button;
     @FXML private TextField file1TextField;
     @FXML private TextField file2TextField;
     @FXML private LineChart graph1;
@@ -41,27 +43,30 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private Text titleText;
     
     @FXML
-    private void handleDisplayButton(ActionEvent event){
-        /*CSVReader c = new CSVReader();
-        String input1 = file1TextField.getSelectedText();
-        if(!(input1.equals(""))){//checking the field isn't empty
-            PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
-            display the powerspectrum animation
-        }*/
+    private void handleDisplayButton(ActionEvent event) {
+        CSVReader c = new CSVReader();
+        String input1 = file1TextField.getText();
+        //try {//checking the field isn't empty
+            //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
+            System.out.println("testing textfield1");
+            /* display the powerspectrum animation*/
+        //} catch (FileNotFoundException f){
+            //do nothing
+        //}
     }
     
     @FXML
-    private void handleSimilarityTestButton(ActionEvent event) throws FileNotFoundException{
-     /*   CSVReader c = new CSVReader();
-        String input1 = file1TextField.getSelectedText();
-        String input2 = file2TextField.getSelectedText();
+    private void handleSimilarityTestButton(ActionEvent event) {
+        CSVReader c = new CSVReader();
+        String input1 = file1TextField.getText();
+        String input2 = file2TextField.getText();
         if(!((input2.equals("")) && input1.equals(""))){//checking the field isn't empty
-            PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
-            PowerSpectrum q = new PowerSpectrum(c.readFile(input2));           
-            //display the powerspectrum animation of the two graphs*/
-            System.out.println("hello");
-            
-      //  }
+            //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
+           // PowerSpectrum q = new PowerSpectrum(c.readFile(input2));           
+            //display the powerspectrum animation of the two graphs
+            //System.out.println("hello");
+             System.out.println("testing textfield1");
+        }
     }
     @FXML
     private void handleTest2ButtonAction(ActionEvent event) {
@@ -111,6 +116,8 @@ public class BWVisualizerFXMLController implements Initializable {
      */
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        noTestButton.setOnAction(this::handleDisplayButton);
+        simButton.setOnAction(this::handleSimilarityTestButton);
         test2Button.setOnAction(this::handleTest2ButtonAction);
         test3Button.setOnAction(this::handleTest3ButtonAction);
         xAxis.setAutoRanging(false);
