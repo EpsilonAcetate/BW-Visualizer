@@ -73,19 +73,19 @@
    <top>
       <AnchorPane fx:id="titleBox" prefHeight="18.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="246.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BrainWave Visualizer" />
+            <Text fx:id="titleText" layoutX="246.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BrainWave Visualizer"/>
          </children>
       </AnchorPane>
    </top>
    <center>
       <Pane fx:id="graphingPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <LineChart layoutX="-5.0" layoutY="-4.0" prefHeight="317.0" prefWidth="429.0">
+            <LineChart fx:id="graph1" layoutX="-5.0" layoutY="-4.0" prefHeight="317.0" prefWidth="429.0">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <NumberAxis fx:id="xAxis" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="yAxis" side="LEFT" />
               </yAxis>
             </LineChart>
          </children></Pane>
