@@ -42,7 +42,7 @@ public class TmpAnimTest extends Application {
    
         stage.setScene(scene);
         stage.show();
-        System.out.println(p.getLength());
+       // System.out.println(p.getLength());
         Timeline tl = new Timeline();
         try {
             System.out.println("hello");
