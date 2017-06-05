@@ -44,6 +44,8 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private NumberAxis yAxis1;
     @FXML private NumberAxis xAxis2;
     @FXML private NumberAxis yAxis2;
+    @FXML private NumberAxis xAxis3;
+    @FXML private NumberAxis yAxis3;
     @FXML private Text titleText;
 
     private static final CSVReader CSVREADER = new CSVReader();
@@ -62,27 +64,17 @@ public class BWVisualizerFXMLController implements Initializable {
     }
     @FXML
     private void handleDisplayButton(ActionEvent event) {
-        //try {//checking the field isn't empty
-            //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
-            System.out.println("testing textfield1 received valid input");
-            /* display the powerspectrum animation*/
-        //} catch (FileNotFoundException f){
-            //do nothing
-        //}
+        handleGraph1();
+        handleGraph2();
+        handleGraph3();
     }
     
     @FXML
     private void handleSimilarityTestButton(ActionEvent event) {
-        //checking the field isn't empty 
-            //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
-           // PowerSpectrum q = new PowerSpectrum(c.readFile(input2));           
-            //display the powerspectrum animation of the two graphs
-            //System.out.println("hello");
-             System.out.println("testing textfield1 and 2 rec");
+        handleGraph3();
     }
     @FXML
     private void handleTest2ButtonAction(ActionEvent event) {
-        System.out.println("Button 2 has been pressed.");
         handleGraph1();
     }
     
@@ -97,7 +89,7 @@ public class BWVisualizerFXMLController implements Initializable {
         Timeline tl = new Timeline();
         try {
             CSVReader c = new CSVReader();
-            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/s21.powerspec.csv"));
+            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/"+input1));
             System.out.println("hello");
             tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent actionEvent) {
@@ -130,7 +122,7 @@ public class BWVisualizerFXMLController implements Initializable {
         Timeline tl = new Timeline();
         try {
             CSVReader c = new CSVReader();
-            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/s22.powerspec.csv"));
+            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/"+input2));
             System.out.println("hello");
             tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent actionEvent) {
@@ -154,6 +146,34 @@ public class BWVisualizerFXMLController implements Initializable {
             tl.play();
         } catch (Exception e) {
             System.out.println("there was an exception caught.");
+        }
+    }
+
+    int q3 = 0;
+    private void handleGraph3() {
+        Timeline tl = new Timeline();
+        try {
+            CSVReader c = new CSVReader();
+            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/"+input1));
+            PowerSpectrum p2 = new PowerSpectrum(c.readFile("powerspec/"+input2));
+            tl.getKeyFrames().add(
+                new KeyFrame(Duration.millis(200), 
+                        new EventHandler<ActionEvent>() {
+                        @Override public void handle(ActionEvent actionEvent) {
+                            XYChart.Series series3 = new XYChart.Series();
+                            series3.getData().add(new XYChart.Data(q3, p.similarity(p2, q3, "cosine")));
+                            series3.getData().add(new XYChart.Data(q3+1, p.similarity(p2, q3+1, "cosine")));
+                            graph3.getData().add(series3);
+                            q3++;
+                            //series3.getData().clear();
+                        }
+                     }
+                    ));
+                tl.setCycleCount(Animation.INDEFINITE);
+                tl.setAutoReverse(true);
+                tl.play();
+        } catch (Exception e) {
+            //do nada
         }
     }
 
@@ -190,10 +210,23 @@ public class BWVisualizerFXMLController implements Initializable {
         yAxis2.setTickUnit(2);
         xAxis2.setLabel("Power");
         yAxis2.setLabel("Coefficient");
+
+        xAxis3.setAutoRanging(false);
+        xAxis3.setLowerBound(0);
+        xAxis3.setUpperBound(180);
+        xAxis3.setTickUnit(10);
+
+        yAxis3.setAutoRanging(false);
+        yAxis3.setLowerBound(0);
+        yAxis3.setUpperBound(1);
+        yAxis3.setTickUnit(0.1);
+        xAxis3.setLabel("Time");
+        yAxis3.setLabel("Similarity");
         
         graph1.setLegendVisible(false);
         graph2.setLegendVisible(false);
-     
+        graph3.setLegendVisible(false);
+
         System.out.println("hello world 0000");
     } 
     public BWVisualizerFXMLController() {
