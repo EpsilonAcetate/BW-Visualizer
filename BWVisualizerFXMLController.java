@@ -46,12 +46,25 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private NumberAxis yAxis2;
     @FXML private Text titleText;
 
+    private static final CSVReader CSVREADER = new CSVReader();
+    private String input1;
+    private String input2;
+    @FXML
+    private void handleTextField1ConfirmButton(ActionEvent event){
+        input1 = file1TextField.getText();
+        System.out.println("testing confirm 1 button");
+    }
+
+    @FXML
+    private void handleTextField2ConfirmButton(ActionEvent event) {
+        input2 = file2TextField.getText();
+        System.out.println("testing confirm 2 button");
+    }
+    @FXML
     private void handleDisplayButton(ActionEvent event) {
-        CSVReader c = new CSVReader();
-        String input1 = file1TextField.getText();
         //try {//checking the field isn't empty
             //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
-            System.out.println("testing textfield1");
+            System.out.println("testing textfield1 received valid input");
             /* display the powerspectrum animation*/
         //} catch (FileNotFoundException f){
             //do nothing
@@ -60,16 +73,12 @@ public class BWVisualizerFXMLController implements Initializable {
     
     @FXML
     private void handleSimilarityTestButton(ActionEvent event) {
-        CSVReader c = new CSVReader();
-        String input1 = file1TextField.getText();
-        String input2 = file2TextField.getText();
-        if(!((input2.equals("")) && input1.equals(""))){//checking the field isn't empty
+        //checking the field isn't empty 
             //PowerSpectrum p = new PowerSpectrum(c.readFile(input1));
            // PowerSpectrum q = new PowerSpectrum(c.readFile(input2));           
             //display the powerspectrum animation of the two graphs
             //System.out.println("hello");
-             System.out.println("testing textfield1");
-        }
+             System.out.println("testing textfield1 and 2 rec");
     }
     @FXML
     private void handleTest2ButtonAction(ActionEvent event) {
@@ -153,6 +162,8 @@ public class BWVisualizerFXMLController implements Initializable {
      */
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
+        file1Button.setOnAction(this::handleTextField1ConfirmButton);
+        file2Button.setOnAction(this::handleTextField2ConfirmButton);
         noTestButton.setOnAction(this::handleDisplayButton);
         simButton.setOnAction(this::handleSimilarityTestButton);
         test2Button.setOnAction(this::handleTest2ButtonAction);
