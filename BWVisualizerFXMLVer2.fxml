@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -26,24 +25,24 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="598.0">
                      <children>
-                        <LineChart fx:id="graph1" prefHeight="317.0" prefWidth="429.0">
+                        <LineChart fx:id="graph1" prefHeight="317.0" prefWidth="586.0">
                           <xAxis>
-                            <NumberAxis side="BOTTOM" fx:id="xAxis" />
+                            <NumberAxis side="BOTTOM" fx:id="xAxis1" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="yAxis" side="LEFT" />
+                            <NumberAxis fx:id="yAxis1" side="LEFT" />
                           </yAxis>
                         </LineChart>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <LineChart prefHeight="316.0" prefWidth="568.0">
+                        <LineChart fx:id="graph2" prefHeight="316.0" prefWidth="568.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" fx:id="xAxis2" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="yAxis2" side="LEFT" />
                           </yAxis>
                         </LineChart>
                      </children>
@@ -129,12 +128,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <LineChart prefHeight="294.0" prefWidth="746.0">
+                  <LineChart fx:id="graph3" prefHeight="294.0" prefWidth="746.0">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <NumberAxis side="BOTTOM" fx:id="xAxis3" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis3" side="LEFT" />
                     </yAxis>
                   </LineChart>
                </children>

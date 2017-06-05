@@ -38,11 +38,14 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private TextField file1TextField;
     @FXML private TextField file2TextField;
     @FXML private LineChart graph1;
-    @FXML private NumberAxis xAxis;
-    @FXML private NumberAxis yAxis;
+    @FXML private LineChart graph2;
+    @FXML private LineChart graph3;
+    @FXML private NumberAxis xAxis1;
+    @FXML private NumberAxis yAxis1;
+    @FXML private NumberAxis xAxis2;
+    @FXML private NumberAxis yAxis2;
     @FXML private Text titleText;
-    
-    @FXML
+
     private void handleDisplayButton(ActionEvent event) {
         CSVReader c = new CSVReader();
         String input1 = file1TextField.getText();
@@ -76,7 +79,7 @@ public class BWVisualizerFXMLController implements Initializable {
     
     @FXML
     private void handleTest3ButtonAction(ActionEvent event){
-        //titleText.setText("New Title YAY");
+        handleGraph2();
     }
 
     int q=0;
@@ -111,6 +114,40 @@ public class BWVisualizerFXMLController implements Initializable {
             System.out.println("there was an exception caught.");
         }
     }
+
+    int q2=0;
+    @FXML
+    private void handleGraph2() {
+        Timeline tl = new Timeline();
+        try {
+            CSVReader c = new CSVReader();
+            PowerSpectrum p = new PowerSpectrum(c.readFile("powerspec/s22.powerspec.csv"));
+            System.out.println("hello");
+            tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>() {
+                @Override public void handle(ActionEvent actionEvent) {
+                    try {
+                        XYChart.Series series = new XYChart.Series();
+                        for (int i=0;i<170;i+=4) {
+                            series.getData().add(new XYChart.Data(i, p.getVal(q2, i)));
+                        }
+                        graph2.getData().add(series);
+                        System.out.println("okay.");
+                        q2++;
+                        series.getData().removeAll(series.getData());
+                    }
+                    catch (IndexOutOfBoundsException e) {
+                        //do nothing.
+                    }
+                }
+            }));
+            tl.setCycleCount(Animation.INDEFINITE);
+            tl.setAutoReverse(true);
+            tl.play();
+        } catch (Exception e) {
+            System.out.println("there was an exception caught.");
+        }
+    }
+
     /**
      * Initializes the controller class.
      */
@@ -120,18 +157,31 @@ public class BWVisualizerFXMLController implements Initializable {
         simButton.setOnAction(this::handleSimilarityTestButton);
         test2Button.setOnAction(this::handleTest2ButtonAction);
         test3Button.setOnAction(this::handleTest3ButtonAction);
-        xAxis.setAutoRanging(false);
-        xAxis.setLowerBound(0);
-        xAxis.setUpperBound(180);
-        xAxis.setTickUnit(10);
-
-        yAxis.setAutoRanging(false);
-        yAxis.setLowerBound(0);
-        yAxis.setUpperBound(10);
-        yAxis.setTickUnit(2);
-        xAxis.setLabel("Power");
-        yAxis.setLabel("Coefficient");   
+        
+        xAxis1.setAutoRanging(false);
+        xAxis1.setLowerBound(0);
+        xAxis1.setUpperBound(180);
+        xAxis1.setTickUnit(10);
+        yAxis1.setAutoRanging(false);
+        yAxis1.setLowerBound(0);
+        yAxis1.setUpperBound(10);
+        yAxis1.setTickUnit(2);
+        xAxis1.setLabel("Power");
+        yAxis1.setLabel("Coefficient");   
+        
+        xAxis2.setAutoRanging(false);
+        xAxis2.setLowerBound(0);
+        xAxis2.setUpperBound(180);
+        xAxis2.setTickUnit(10);
+        yAxis2.setAutoRanging(false);
+        yAxis2.setLowerBound(0);
+        yAxis2.setUpperBound(10);
+        yAxis2.setTickUnit(2);
+        xAxis2.setLabel("Power");
+        yAxis2.setLabel("Coefficient");
+        
         graph1.setLegendVisible(false);
+        graph2.setLegendVisible(false);
      
         System.out.println("hello world 0000");
     } 
