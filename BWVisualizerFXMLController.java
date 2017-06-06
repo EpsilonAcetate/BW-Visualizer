@@ -47,10 +47,13 @@ public class BWVisualizerFXMLController implements Initializable {
     @FXML private NumberAxis xAxis3;
     @FXML private NumberAxis yAxis3;
     @FXML private Text titleText;
+//    @FXML private Button resetButton;
 
     private static final CSVReader CSVREADER = new CSVReader();
     private String input1;
     private String input2;
+    private boolean reset = false;
+
     @FXML
     private void handleTextField1ConfirmButton(ActionEvent event){
         input1 = file1TextField.getText();
@@ -69,6 +72,12 @@ public class BWVisualizerFXMLController implements Initializable {
         handleGraph3();
     }
     
+    @FXML
+    private void handleReset(ActionEvent event) {
+        reset = true;
+        graph1.getData().clear();
+    }
+
     @FXML
     private void handleSimilarityTestButton(ActionEvent event) {
         handleGraph3();
@@ -93,21 +102,28 @@ public class BWVisualizerFXMLController implements Initializable {
             System.out.println("hello");
             tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), new EventHandler<ActionEvent>() {
                 @Override public void handle(ActionEvent actionEvent) {
-                    try {
-                        XYChart.Series series = new XYChart.Series();
-                        for (int i=0;i<170;i+=4) {
-                            series.getData().add(new XYChart.Data(i, p.getVal(q, i)));
+                    if (!reset) {
+                        try {
+                            XYChart.Series series = new XYChart.Series();
+                            for (int i=0;i<170;i+=4) {
+                                series.getData().add(new XYChart.Data(i, p.getVal(q, i)));
+                            }
+                            graph1.getData().add(series);
+                            System.out.println("okay.");
+                            q++;
+                            series.getData().removeAll(series.getData());
                         }
-                        graph1.getData().add(series);
-                        System.out.println("okay.");
-                        q++;
-                        series.getData().removeAll(series.getData());
-                    }
-                    catch (IndexOutOfBoundsException e) {
-                        System.out.println("an excpetion was caught.");
+                        catch (IndexOutOfBoundsException e) {
+                            System.out.println("an exception was caught.");
+                        }
+                    } else {
+                        reset = false;
+                        System.out.println("reset has just been set to false");
+                        return;
                     }
                 }
             }));
+        
             tl.setCycleCount(Animation.INDEFINITE);
             tl.setAutoReverse(true);
             tl.play();
@@ -188,6 +204,7 @@ public class BWVisualizerFXMLController implements Initializable {
         simButton.setOnAction(this::handleSimilarityTestButton);
         test2Button.setOnAction(this::handleTest2ButtonAction);
         test3Button.setOnAction(this::handleTest3ButtonAction);
+    //    resetButton.setOnAction(this::handleReset);
         
         xAxis1.setAutoRanging(false);
         xAxis1.setLowerBound(0);
@@ -195,10 +212,10 @@ public class BWVisualizerFXMLController implements Initializable {
         xAxis1.setTickUnit(10);
         yAxis1.setAutoRanging(false);
         yAxis1.setLowerBound(0);
-        yAxis1.setUpperBound(10);
+        yAxis1.setUpperBound(100);
         yAxis1.setTickUnit(2);
-        xAxis1.setLabel("Power");
-        yAxis1.setLabel("Coefficient");   
+        xAxis1.setLabel("Frequency (Hz)");
+        yAxis1.setLabel("Power");   
         
         xAxis2.setAutoRanging(false);
         xAxis2.setLowerBound(0);
@@ -206,10 +223,10 @@ public class BWVisualizerFXMLController implements Initializable {
         xAxis2.setTickUnit(10);
         yAxis2.setAutoRanging(false);
         yAxis2.setLowerBound(0);
-        yAxis2.setUpperBound(10);
+        yAxis2.setUpperBound(100);
         yAxis2.setTickUnit(2);
-        xAxis2.setLabel("Power");
-        yAxis2.setLabel("Coefficient");
+        xAxis2.setLabel("Frequency (Hz)");
+        yAxis2.setLabel("Power");
 
         xAxis3.setAutoRanging(false);
         xAxis3.setLowerBound(0);
